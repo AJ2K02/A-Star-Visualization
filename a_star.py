@@ -5,7 +5,6 @@ from random import randint
 
 
 sps = 60
-map = np.zeros((sps, sps))
 root_side = 720
 # size of a side in px
 
