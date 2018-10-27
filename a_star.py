@@ -1,5 +1,4 @@
 import tkinter as tk
-import numpy as np
 from math import sqrt
 import time
 from random import randint
@@ -13,15 +12,6 @@ root_side = 720
 square_side = root_side / sps
 # size of the side of a square in px
 
-
-nodes = [[0] * sps] * sps
-# 0 = unexplored
-# 1 = start node
-# 2 = end node
-# 3 = wall
-# 4 = in open set
-# 5 = in closed set
-# 6 = best path
 
 walls = []
 
@@ -172,7 +162,7 @@ def key_press(event):
 
 
 def click(event):
-    global w, nodes
+    global w
     index_x = int(event.x * sps / root_side)
     index_y = int(event.y * sps / root_side)
     if click_mode == "start":
@@ -180,18 +170,15 @@ def click(event):
         if start[0] != -1:
             print("2 starting nodes, error")
         w.itemconfigure(index_y * sps + index_x + 1, fill="orange")
-        nodes[index_x][index_y] = 1
         start = (index_x, index_y)
     elif click_mode == "end":
         global end
         if end[0] != -1:
             print("2 starting nodes, error")
         w.itemconfigure(index_y * sps + index_x + 1, fill="purple")
-        nodes[index_x][index_y] = 2
         end = (index_x, index_y)
     elif click_mode == "wall":
         w.itemconfigure(index_y * sps + index_x + 1, fill="black")
-        nodes[index_x][index_y] = 3
         walls.append((index_x, index_y))
 
 
